@@ -102,7 +102,8 @@ extern struct security_operations *security_ops;
 /* SECMARK reference count */
 static atomic_t selinux_secmark_refcount = ATOMIC_INIT(0);
 
-#ifdef CONFIG_SECURITY_SELINUX_DEVELOP
+#if !defined(CONFIG_SECURITY_SELINUX_PERMISSIVE) && \
+    defined(CONFIG_SECURITY_SELINUX_DEVELOP)
 int selinux_enforcing;
 
 static int __init enforcing_setup(char *str)

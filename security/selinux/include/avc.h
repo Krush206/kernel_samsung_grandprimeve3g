@@ -19,10 +19,14 @@
 #include "av_permissions.h"
 #include "security.h"
 
+#ifndef CONFIG_SECURITY_SELINUX_PERMISSIVE
 #ifdef CONFIG_SECURITY_SELINUX_DEVELOP
 extern int selinux_enforcing;
 #else
 #define selinux_enforcing 1
+#endif
+#else
+#define selinux_enforcing 0
 #endif
 
 /*
